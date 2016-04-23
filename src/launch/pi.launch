@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="al_odom" type="al_odom_node" name="al_odom_node" respawn="true" />
+	<node pkg="al_cmd" type="al_cmd_node" name="al_cmd_node" respawn="true" />
+</launch>
