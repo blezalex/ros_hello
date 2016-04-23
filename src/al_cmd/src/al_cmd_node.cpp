@@ -1,7 +1,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 
-#include "/home/user/lidar_ws/src/al_odom/src/serial.h"
+#include "../../al_odom/src/serial.h"
 #include "../../robot_params/params.h"
 
 int controlPort;
