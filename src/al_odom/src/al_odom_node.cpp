@@ -51,8 +51,8 @@ int main(int argc, char** argv){
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).toSec();
 
-    double dl = encoderToMeters(prevLeft - left);
-    double dr = encoderToMeters(prevRight - right);
+    double dl = encoderToMeters(left - prevLeft);
+    double dr = encoderToMeters(right - prevRight);
     prevLeft = left;
     prevRight = right;
 

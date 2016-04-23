@@ -13,7 +13,8 @@
 #include <stdlib.h>
 
 
-const char* data_port = "/dev/ttyACM0";
+//const char* data_port = "/dev/ttyACM0";
+const char* data_port = "/dev/ttyAMA0";
 
 
 void error_message(const char* format, ...)
@@ -91,7 +92,7 @@ int openSerial(const char* portname){
   }
 
   set_interface_attribs(fd, B38400, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-  set_blocking(fd, 0);                // set no blocking
+  set_blocking(fd, 1);                // set no blocking
 
   return fd;
 }
