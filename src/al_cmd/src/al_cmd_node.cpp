@@ -57,7 +57,7 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-  controlPort = openSerial("/dev/ttyACM0");
+  controlPort = openSerial(data_port);
 
   ros::init(argc, argv, "listener");
   ros::NodeHandle n;

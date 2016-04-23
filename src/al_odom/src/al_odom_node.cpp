@@ -9,7 +9,7 @@
 
 
 int main(int argc, char** argv){
-  int fd = openSerial("/dev/ttyACM0");
+  int fd = openSerial(data_port);
   FILE* f = fdopen(fd, "r");
   if (!f){
     printf("failed to open port");
@@ -106,8 +106,9 @@ int main(int argc, char** argv){
 
     //set the velocity
     odom.child_frame_id = "base_link";
-    odom.twist.twist.linear.x = vx;
-    odom.twist.twist.linear.y = vy;
+    odom.twist.twist.linear.x = dxy / dx;
+    odom.twist.twist.linear.y = 0;
+    odom.twist.twist.linear.z = 0;
     odom.twist.twist.angular.z = vth;
 
     //publish the message

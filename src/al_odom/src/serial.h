@@ -13,6 +13,9 @@
 #include <stdlib.h>
 
 
+const char* data_port = "/dev/ttyACM0";
+
+
 void error_message(const char* format, ...)
 {
   va_list argptr;
@@ -79,7 +82,7 @@ void set_blocking(int fd, int should_block)
     error_message("error %d setting term attributes", errno);
 }
 
-int openSerial(char* portname){
+int openSerial(const char* portname){
   int fd = open(portname, O_RDWR | O_NOCTTY | O_SYNC);
   if (fd < 0)
   {
