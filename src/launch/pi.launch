@@ -6,5 +6,9 @@
 	<node pkg="al_cmd" type="al_cmd_node" name="al_cmd_node" respawn="true">
 		<param name="serial" value="$(arg motorSerial)" />
 	</node>
-
+	<node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="laser" respawn="true">
+		<param name="port" value="/dev/ttyUSB0" />
+		<param name="firmware_version" value="2" />
+		<param name="frame_id" value="laser" />
+	</node>
 </launch>
