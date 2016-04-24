@@ -57,10 +57,13 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-  controlPort = openSerial(data_port);
-
   ros::init(argc, argv, "listener");
-  ros::NodeHandle n;
+  ros::NodeHandle n("~");
+
+  std::string serialPath;
+  n.getParam("serial", serialPath);
+
+  controlPort = openSerial(serialPath.c_str());
 
   last_time = ros::Time::now();
   ros::Subscriber sub = n.subscribe("cmd_vel", 1, chatterCallback);

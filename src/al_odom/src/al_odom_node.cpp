@@ -9,18 +9,21 @@
 
 
 int main(int argc, char** argv){
-  int fd = openSerial(data_port);
-  FILE* f = fdopen(fd, "r");
-  if (!f){
-    printf("failed to open port");
-    exit(1);
-  }
-
   ros::init(argc, argv, "odometry_publisher");
 
-  ros::NodeHandle n;
+  ros::NodeHandle n("~");
   ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
   tf::TransformBroadcaster odom_broadcaster;
+
+  std::string serialPath;
+  n.getParam("serial", serialPath);
+
+  int fd = openSerial(serialPath.c_str());
+  FILE* f = fdopen(fd, "r");
+  if (!f){
+    printf("failed to open port: %s\n", serialPath.c_str());
+    exit(1);
+  }
 
   double x = 0.0;
   double y = 0.0;

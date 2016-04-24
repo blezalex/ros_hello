@@ -13,10 +13,6 @@
 #include <stdlib.h>
 
 
-//const char* data_port = "/dev/ttyACM0";
-const char* data_port = "/dev/ttyAMA0";
-
-
 void error_message(const char* format, ...)
 {
   va_list argptr;
