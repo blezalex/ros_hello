@@ -42,8 +42,8 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 
   double rotationDist = msg->angular.z / 2 * wheelDistance;
 
-  int16_t speedLeft = metersToEncoder(msg->linear.x + rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
-  int16_t speedRight = metersToEncoder(msg->linear.x - rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
+  int16_t speedLeft = metersToEncoder(msg->linear.x - rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
+  int16_t speedRight = metersToEncoder(msg->linear.x + rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
 
   printf("%d\t%d\n", speedLeft, speedRight);
 
