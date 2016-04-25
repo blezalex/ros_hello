@@ -20,9 +20,7 @@ int16_t constain(int16_t x, int16_t min, int16_t max)
 	return x;
 }
 
-#define CMD_RATE 20
-
-#define SPEED_DEVIDER_BEFORE_PID 2.0
+#define CMD_RATE 50
 
 int16_t toBE(int16_t val)
 {
@@ -42,8 +40,8 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 
   double rotationDist = msg->angular.z / 2 * wheelDistance;
 
-  int16_t speedLeft = metersToEncoder(msg->linear.x - rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
-  int16_t speedRight = metersToEncoder(msg->linear.x + rotationDist) / CMD_RATE * SPEED_DEVIDER_BEFORE_PID;
+  int16_t speedLeft = metersToEncoder(msg->linear.x - rotationDist) / CMD_RATE;
+  int16_t speedRight = metersToEncoder(msg->linear.x + rotationDist) / CMD_RATE;
 
   printf("%d\t%d\n", speedLeft, speedRight);
 
@@ -58,10 +56,10 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "listener");
-  ros::NodeHandle n("~");
+  ros::NodeHandle n;
 
   std::string serialPath;
-  n.getParam("serial", serialPath);
+  ros::param::get("~serial", serialPath);
 
   controlPort = openSerial(serialPath.c_str());
 

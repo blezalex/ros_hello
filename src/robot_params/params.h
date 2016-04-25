@@ -7,11 +7,11 @@
 
 double encoderToMeters(int16_t encTicks)
 {
-  return encTicks * wheelCircumference / ticksPerRotation * gearRatio;
+    return encTicks * wheelCircumference / ticksPerRotation * gearRatio;
 }
 
 
 double metersToEncoder(double meters)
 {
-	return meters / wheelCircumference / gearRatio * ticksPerRotation;
+    return meters / wheelCircumference / gearRatio * ticksPerRotation;
 }
