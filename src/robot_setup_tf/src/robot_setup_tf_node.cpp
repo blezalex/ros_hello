@@ -15,7 +15,7 @@ int main(int argc, char** argv){
   while(n.ok()){
 
     //since all odometry is 6DOF we'll need a quaternion created from yaw
-    geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(3.14159);
+    geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(0);
 
     //first, we'll publish the transform over tf
     geometry_msgs::TransformStamped odom_trans;
@@ -23,7 +23,7 @@ int main(int argc, char** argv){
     odom_trans.header.frame_id = "base_link";
     odom_trans.child_frame_id = "laser";
 
-    odom_trans.transform.translation.x = 0;
+    odom_trans.transform.translation.x = 0.03;
     odom_trans.transform.translation.y = 0;
     odom_trans.transform.translation.z = 0.1;
     odom_trans.transform.rotation = odom_quat;

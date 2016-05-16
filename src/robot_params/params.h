@@ -3,7 +3,7 @@
 #define wheelCircumference 0.225
 #define gearRatio (1/48.0)
 #define ticksPerRotation 12
-#define wheelDistance 0.13
+#define wheelDistance 0.245
 
 double encoderToMeters(int16_t encTicks)
 {

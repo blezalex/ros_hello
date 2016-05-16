@@ -43,7 +43,7 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
   int16_t speedLeft = metersToEncoder(msg->linear.x - rotationDist) / CMD_RATE;
   int16_t speedRight = metersToEncoder(msg->linear.x + rotationDist) / CMD_RATE;
 
-  printf("%d\t%d\n", speedLeft, speedRight);
+//  printf("%d\t%d\n", speedLeft, speedRight);
 
   char buffer[] = { 0, 0, 0, 0, 0, 0 };
 

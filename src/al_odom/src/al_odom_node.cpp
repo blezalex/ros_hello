@@ -12,7 +12,7 @@ int main(int argc, char** argv){
   ros::init(argc, argv, "odometry_publisher");
 
   ros::NodeHandle n("~");
-  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("/odom", 50);
   tf::TransformBroadcaster odom_broadcaster;
 
   std::string serialPath;
@@ -46,7 +46,7 @@ int main(int argc, char** argv){
     if (matchCnt != 2)
       continue;
 
-    printf("%d %d\n", left, right);
+//    printf("%d %d\n", left, right);
 
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
@@ -109,7 +109,7 @@ int main(int argc, char** argv){
 
     //set the velocity
     odom.child_frame_id = "base_link";
-    odom.twist.twist.linear.x = dxy / dx;
+    odom.twist.twist.linear.x = dxy / dt;
     odom.twist.twist.linear.y = 0;
     odom.twist.twist.linear.z = 0;
     odom.twist.twist.angular.z = vth;

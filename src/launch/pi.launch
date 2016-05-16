@@ -1,14 +1,16 @@
 <launch>
-	
 	<node pkg="al_odom" type="al_odom_node" name="al_odom_node" respawn="true">
 		<param name="serial" value="$(arg motorSerial)" />
 	</node>
 	<node pkg="al_cmd" type="al_cmd_node" name="al_cmd_node" respawn="true">
 		<param name="serial" value="$(arg motorSerial)" />
 	</node>
+	<!--<node pkg="tf" type="static_transform_publisher" name="laser_base_link_publisher" args="0 0 0.1 3.14159 0 0 base_link laser 50" />
+	-->
 	<node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="laser" respawn="true">
 		<param name="port" value="/dev/ttyUSB0" />
 		<param name="firmware_version" value="2" />
 		<param name="frame_id" value="laser" />
 	</node>
+	 <node pkg="robot_setup_tf" type="robot_setup_tf_node" name="robot_setup_tf" respawn="true"/>
 </launch>
